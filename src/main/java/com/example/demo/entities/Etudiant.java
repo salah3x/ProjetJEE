@@ -1,15 +1,15 @@
 package com.example.demo.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by salah3x on 4/29/18 3:15 PM.
@@ -18,12 +18,13 @@ import java.util.List;
 @DiscriminatorValue(value="ETUDIANT")
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "cours")
 public class Etudiant extends Personne {
 
 	private String specialite;
 
 	@ManyToMany(cascade=CascadeType.ALL)
-	private List<Cours> cours=new ArrayList<>();
+	private Set<Cours> cours = new HashSet<>();
 
 	public void addCours(Cours cours){
 		this.getCours().add(cours) ;

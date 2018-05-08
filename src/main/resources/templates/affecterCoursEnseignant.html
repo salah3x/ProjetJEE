@@ -26,7 +26,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="cour : ${cours}">
+        <tr th:each="cour : ${cours}" th:if="${cour.enseignant}">
             <td th:text="${cour.id}">test</td>
             <td th:text="${cour.nom}">test</td>
             <td th:text="${cour.enseignant.id}">test</td>

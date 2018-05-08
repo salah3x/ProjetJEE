@@ -1,12 +1,12 @@
 package com.example.demo.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by salah3x on 4/29/18 3:19 PM.
@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "etudiants")
 public class Cours {
 
 	@Id
@@ -27,7 +28,7 @@ public class Cours {
 	private Enseignant enseignant;
 
 	@ManyToMany(mappedBy="cours", cascade=CascadeType.ALL)
-	private List<Etudiant> etudiants=new ArrayList<>();
+    private Set<Etudiant> etudiants = new HashSet<>();
 
 	public void addEtudiant(Etudiant etudiant){
 		this.getEtudiants().add(etudiant) ;
