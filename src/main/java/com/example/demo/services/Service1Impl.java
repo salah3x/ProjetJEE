@@ -33,7 +33,8 @@ public class Service1Impl implements Service1 {
 
 	@Override
 	public Personne ajouterPersonneAvecAdresse(Personne personne, Adresse adresse) {
-		personne.setAdresse(adresse);
+        if (adresse != null)
+            personne.setAdresse(adresse);
 		return personneRepo.save(personne);
 	}
 
@@ -43,8 +44,11 @@ public class Service1Impl implements Service1 {
 			Vacataire vacataire = new Vacataire();
 			vacataire.setNom(enseignant.getNom());
 			vacataire.setPrenom(enseignant.getPrenom());
-			if (enseignant.getAdresse() != null)
-				vacataire.setAdresse(adresseRepo.getOne(enseignant.getAdresse().getId()));
+            vacataire.setAdresse(new Adresse());
+            if (enseignant.getAdresse() != null) {
+                vacataire.getAdresse().setRue(enseignant.getAdresse().getRue());
+                vacataire.getAdresse().setVille(enseignant.getAdresse().getVille());
+            }
 			vacataire.setService(enseignant.getService());
 			vacataire.setCours(enseignant.getCours());
 			vacataire.setEmployeur(attribute);
@@ -53,8 +57,11 @@ public class Service1Impl implements Service1 {
 			Permanant permanant = new Permanant();
 			permanant.setNom(enseignant.getNom());
 			permanant.setPrenom(enseignant.getPrenom());
-			if (enseignant.getAdresse() != null)
-				permanant.setAdresse(adresseRepo.getOne(enseignant.getAdresse().getId()));
+            permanant.setAdresse(new Adresse());
+            if (enseignant.getAdresse() != null) {
+                permanant.getAdresse().setRue(enseignant.getAdresse().getRue());
+                permanant.getAdresse().setVille(enseignant.getAdresse().getVille());
+            }
 			permanant.setService(enseignant.getService());
 			permanant.setCours(enseignant.getCours());
 			permanant.setGrade(attribute);
