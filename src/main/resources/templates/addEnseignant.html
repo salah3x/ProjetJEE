@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>ProjetJEE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Les Enseignants</h2>
+    <p></p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Rue</th>
+            <th>Ville</th>
+            <th>Service</th>
+            <th>Type</th>
+            <th>Grade ou Employeur</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e : ${enseignants}">
+            <td th:text="${e.id}">test</td>
+            <td th:text="${e.nom}">test</td>
+            <td th:text="${e.prenom}">test</td>
+            <td th:text="${e.adresse?.rue}">test</td>
+            <td th:text="${e.adresse?.ville}">test</td>
+            <td th:text="${e.service}">test</td>
+            <td th:text="${e instanceof T(com.example.demo.entities.Vacataire) ? 'Vacataire':'Permanant' }">test</td>
+            <td th:text="${e instanceof T(com.example.demo.entities.Vacataire)} ?
+                    ${e.employeur}
+                    :${e.grade }">test
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+    <h2>Ajouter Un Enseignant </h2>
+    <form method="post" th:object="${enseignant}">
+        <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" th:field="*{nom}">
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prenom :</label>
+            <input type="text" class="form-control" id="prenom" th:field="*{prenom}">
+        </div>
+
+        <div class="form-group">
+            <label for="rue">RUe :</label>
+            <input type="text" class="form-control" id="rue" th:field="*{adresse.rue}">
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville :</label>
+            <input type="text" class="form-control" id="ville" th:field="*{adresse.ville}">
+        </div>
+        <div class="form-group">
+            <label for="service">Service :</label>
+            <input type="text" class="form-control" id="service" th:field="*{service}">
+        </div>
+
+
+        <div class="form-group">
+            <label for="isVacataire">Permanent ou Vacataire ? :</label>
+            <select class="form-control" id="isVacataire" name="isVacataire">
+                <option value="false">Permanent</option>
+                <option value="true">Vacataire</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="attribute">Employeur ou Grade:</label>
+            <input type="text" class="form-control" id="attribute" name="attribute">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+
+</div>
+
+</body>
+</html>

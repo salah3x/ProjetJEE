@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>ProjetJEE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<br>
+<br>
+<br>
+<div class="container">
+    <h2>Projet JEE</h2>
+    <div class="well well-sm "><a class="fa fa-check " href="/addPersonne"> A) Ajouter une personne avec son
+        adresse </a></div>
+    <div class="well well-sm "><a class="fa fa-check " href="/addEnseignant"> B) Ajouter un enseignant (permanent ou
+        vacataire) </a></div>
+    <div class="well well-sm "><a class="fa fa-check " href="/addEtudiant"> C) Ajouter un étudiant </a></div>
+    <div class="well well-sm "><a class="fa fa-check " href="/addCours"> D) Ajouter un cours </a></div>
+    <div class="well well-sm "><a class="fa fa-check " href="/affecterCoursEnseignant"> E) Affecter des cours à un
+        enseignant </a></div>
+    <div class="well well-sm "><a class="fa fa-check " href="/affecterCoursEtudiant"> F) Affecter des cours à un
+        étudiant </a></div>
+    <div class="well well-sm ">G) Afficher un cours avec les étudiants (id, nom, spécialité) qui le suivent
+        <form method="post" action="/afficherCoursAvecEtudiants">
+            <div class="form-group">
+
+                <label for="cours">Choisir un cours :</label>
+                <select class="form-control" id="cours" name="cours">
+                    <option th:each="cour : ${cours}" th:text="${cour.nom}" th:value="${cour.id}">cours 1</option>
+
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div class="well well-sm ">H) Afficher un enseignant avec ses cours
+        <form method="post" action="/afficherEnseignantAvecCours">
+            <div class="form-group">
+
+                <label for="enseignant">Choisir un enseignant :</label>
+                <select class="form-control" id="enseignant" name="enseignant">
+                    <option th:each="enseignant : ${enseignants}" th:text="${enseignant.nom}+' '+${enseignant.prenom}"
+                            th:value="${enseignant.id}">enseignant 1
+                    </option>
+
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

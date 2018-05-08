@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * this class will register two methods [get & post] on /etudiants
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author: salah3x
  */
 @Controller
-@RequestMapping("/etudiants")
 public class EtudiantController {
 
     private final Service1 service1;
@@ -31,21 +29,19 @@ public class EtudiantController {
         this.repo = repo;
     }
 
-    //this maps to http://{host}:{port}/personne
-    @GetMapping("")
-    public String listeEtFormulaire(Model model){
+    //this maps to http://{host}:{port}/addEtudiant
+    @GetMapping("/addEtudiant")
+    public String addEtudiant(Model model) {
         model.addAttribute("etudiants", repo.findAll());
         model.addAttribute("etudiant", new Etudiant());
-
         //name of template in resources/templates folder
-        return "etudiants";
+        return "addEtudiant";
     }
 
-    @PostMapping("")
-    public String ajouterEtudiant(Etudiant etudiant){
+    @PostMapping("/addEtudiant")
+    public String addEtudiantPost(Etudiant etudiant) {
         service1.ajouterEtudiant(etudiant);
-
-        //will send a redirect response to /etudiants
-        return "redirect:/etudiants";
+        //will send a redirect response to /addEtudiant
+        return "redirect:/addEtudiant";
     }
 }

@@ -12,7 +12,7 @@ public interface Service2 {
 
 	void affecterCoursEtudiant(Long idCours, Long idEtu);
 
-	void afficherCoursAvecEtudiant(Long idCours);
+	Cours afficherCoursAvecEtudiant(Long idCours);
 
-	void afficherEnseignantAvecCours(Long idEns);
+	Enseignant afficherEnseignantAvecCours(Long idEns);
 }

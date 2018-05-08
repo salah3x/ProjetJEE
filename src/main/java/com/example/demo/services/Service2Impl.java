@@ -37,18 +37,20 @@ public class Service2Impl implements Service2 {
 	}
 
 	@Override
-	public void afficherCoursAvecEtudiant(Long idCours) {
+	public Cours afficherCoursAvecEtudiant(Long idCours) {
 		Cours cours = coursRepo.getOne(idCours);
 		System.out.print("Cours : "+cours.getNom()+" - Etudiants : {");
 		cours.getEtudiants().forEach(etudiant -> System.out.print("["+etudiant.getNom()+", "+etudiant.getSpecialite()+"]"));
 		System.out.println("}");
+		return cours;
 	}
 
 	@Override
-	public void afficherEnseignantAvecCours(Long idEns) {
+	public Enseignant afficherEnseignantAvecCours(Long idEns) {
 		Enseignant enseignant = enseignantRepo.getOne(idEns);
 		System.out.print("Enseignant : "+enseignant.getNom()+" - Cours : {");
 		enseignant.getCours().forEach(cours -> System.out.print("["+cours.getNom()+"]"));
 		System.out.println("}");
+		return enseignant;
 	}
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>ProjetJEE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<br>
+<br>
+<br>
+<div class="container">
+    <h2>Les Affectations</h2>
+    <p></p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID Cours</th>
+            <th>Nom Cours</th>
+            <th>ID Etudiant</th>
+            <th>Nom Etudiant</th>
+        </tr>
+        </thead>
+        <tbody th:each="cour : ${cours}">
+        <tr th:each="etudiant : ${cour.etudiants}">
+            <td th:text="${cour.id}">test</td>
+            <td th:text="${cour.nom}">test</td>
+            <td th:text="${etudiant.id}">test</td>
+            <td th:text="${etudiant.nom}">test</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <h2>Affecter des cours à un Etudiant</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="cours">Choisir un cours :</label>
+            <select class="form-control" id="cours" name="cours">
+                <option th:each="cour : ${cours}" th:text="${cour.nom}" th:value="${cour.id}">cours 1</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="etudiant">Choisir un etudiant :</label>
+            <select class="form-control" id="etudiant" name="etudiant">
+                <option th:each="etudiant : ${etudiants}" th:text="${etudiant.nom}+' '+${etudiant.prenom}"
+                        th:value="${etudiant.id}">etudiant 1
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
